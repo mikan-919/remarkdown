@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@variant dark (&:where(.dark, .dark *), @media (prefers-color-scheme: dark));
+
+@theme {
+  --font-elms-sans: var(--elms-sans);
+
+  /* ── Monochrome ── */
+  --color-black: #000000;
+  --color-ink: #111111;
+  --color-ash: #252525;
+  --color-smoke: #e2e2e2;
+  --color-cloud: #f7f7f7;
+  --color-white: #ffffff;
+
+  /* ── Accent ── */
+  --color-prism: #5570c5;
+  --color-haze: #bec9ea;
+  --color-depth: #2e4296;
+
+  /* ── Soft ── */
+  --color-dusk: #909090;
+  --color-fog: #bbbbbb;
+  --color-veil: #f6f6f6;
+  --color-ghost: #fefefe;
+  --color-tint: #eef0fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-black: #ffffff;
+    --color-ink: #f7f7f7;
+    --color-ash: #e2e2e2;
+    --color-smoke: #252525;
+    --color-cloud: #111111;
+    --color-white: #000000;
+
+    --color-prism: #2e4296;
+    --color-depth: #5570c5;
+
+    --color-dusk: #6f6f6f;
+    --color-fog: #444444;
+    --color-veil: #090909;
+    --color-ghost: #010101;
+    --color-tint: #110f05;
+  }
+}
