@@ -9,6 +9,8 @@ import { byokKeyAtom } from '../lib/atoms/byok'
 import { translatedTextAtom } from '../lib/atoms/translate'
 import { translateErrorAtom } from '../lib/atoms/error'
 import { sameLanguageAtom } from '../lib/atoms/sameLanguage'
+import { translatedHashAtom } from '../lib/atoms/translatedHash'
+import { djb2 } from '../lib/hash'
 import { RateLimiter } from '../lib/rateLimiter'
 
 const DEBOUNCE_MS = 2_000
@@ -22,6 +24,7 @@ export function useTranslate() {
   const [leftState, setLeft] = useAtom(left)
   const setError = useSetAtom(translateErrorAtom)
   const setSameLang = useSetAtom(sameLanguageAtom)
+  const [translatedHash, setTranslatedHash] = useAtom(translatedHashAtom)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -29,6 +32,14 @@ export function useTranslate() {
       setTranslated('')
       setLeft('wait')
       setSameLang(false)
+      setTranslatedHash('')
+      return
+    }
+
+    // Skip translation if output is already up-to-date for this input+lang
+    const currentHash = djb2(source + targetLang)
+    if (currentHash === translatedHash) {
+      setLeft(prev => prev === 'progress' ? 'wait' : prev)
       return
     }
 
@@ -37,6 +48,7 @@ export function useTranslate() {
     if (knownLang && knownLang === targetLang) {
       setTranslated(source)
       setSameLang(true)
+      setTranslatedHash(currentHash)
       return
     }
 
@@ -59,6 +71,7 @@ export function useTranslate() {
           setSameLang(false)
         }
         setLeft(detectedLanguage)
+        setTranslatedHash(djb2(source + targetLang))
       } catch (e) {
         setLeft('wait')
         const msg = e instanceof Error ? e.message : '翻訳に失敗しました'
@@ -69,5 +82,5 @@ export function useTranslate() {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)
     }
-  }, [source, targetLang, byokKey, setTranslated, setLeft, leftState, setSameLang, setError])
+  }, [source, targetLang, byokKey, setTranslated, setLeft, leftState, setSameLang, setError, translatedHash, setTranslatedHash])
 }
