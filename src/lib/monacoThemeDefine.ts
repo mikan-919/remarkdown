@@ -1,4 +1,6 @@
-export function defineElmsCloudTheme(monaco) {
+import type * as Monaco from 'monaco-editor'
+
+export function defineElmsCloudTheme(monaco: typeof Monaco) {
   monaco.editor.defineTheme('elms-cloud', {
     base: 'vs',
     inherit: true,
