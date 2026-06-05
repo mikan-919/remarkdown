@@ -4,6 +4,7 @@ import { BYOKButton } from '../components/BYOKButton'
 import { CopyButton } from '../components/CopyButton'
 import { useTranslate } from '../hooks/useTranslate'
 import { ErrorSonar } from '../components/ErrorSonar'
+import { SameLanguageBadge } from '../components/SameLanguageBadge'
 
 function TranslateEngine() {
   useTranslate()
@@ -57,6 +58,7 @@ export default function Home() {
       <Pane direction='right' />
       <Gutter side='right' />
       <ErrorSonar />
+      <SameLanguageBadge />
     </div>
   )
 }
