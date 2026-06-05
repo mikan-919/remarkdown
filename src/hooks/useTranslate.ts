@@ -5,6 +5,7 @@ import { translateAction } from '../app/actions/translate'
 import { markdownAtom } from '../lib/atoms/editor'
 import { targetLangAtom } from '../lib/atoms/language'
 import { left } from '../lib/atoms/progress'
+import { byokKeyAtom } from '../lib/atoms/byok'
 import { translatedTextAtom } from '../lib/atoms/translate'
 import { RateLimiter } from '../lib/rateLimiter'
 
@@ -14,6 +15,7 @@ const rateLimiter = new RateLimiter()
 export function useTranslate() {
   const source = useAtomValue(markdownAtom)
   const targetLang = useAtomValue(targetLangAtom)
+  const byokKey = useAtomValue(byokKeyAtom)
   const setTranslated = useSetAtom(translatedTextAtom)
   const setLeft = useSetAtom(left)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -34,7 +36,7 @@ export function useTranslate() {
       rateLimiter.record()
 
       try {
-        const { translatedText, detectedLanguage } = await translateAction(source, targetLang)
+        const { translatedText, detectedLanguage } = await translateAction(source, targetLang, byokKey || undefined)
         setTranslated(translatedText)
         setLeft(detectedLanguage)
       } catch {
@@ -45,5 +47,5 @@ export function useTranslate() {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)
     }
-  }, [source, targetLang, setTranslated, setLeft])
+  }, [source, targetLang, byokKey, setTranslated, setLeft])
 }

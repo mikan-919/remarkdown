@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/genai": "^2.8.0",
     "@monaco-editor/react": "^4.7.0",
+    "@radix-ui/react-popover": "^1.1.15",
     "@vercel/analytics": "^2.0.1",
     "biome": "^0.3.3",
     "jotai": "^2.20.0",

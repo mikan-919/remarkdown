@@ -1,8 +1,6 @@
 'use server'
 import { GoogleGenAI, Type } from '@google/genai'
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY ?? '' })
-
 const responseSchema = {
   type: Type.OBJECT,
   properties: {
@@ -23,7 +21,8 @@ export type TranslationResult = {
   translatedText: string
 }
 
-export async function translateAction(source: string, targetLang: string): Promise<TranslationResult> {
+export async function translateAction(source: string, targetLang: string, byokKey?: string): Promise<TranslationResult> {
+  const ai = new GoogleGenAI({ apiKey: byokKey || process.env.GEMINI_API_KEY || '' })
   const response = await ai.models.generateContent({
     model: 'gemini-3.1-flash-lite',
     contents: `First, identify the primary language of the following text and return its exact BCP-47 code (e.g. "ja", "en", "zh-CN", "zh-TW", "ko", "fr", "de", "es"). Then translate the text to ${targetLang}. Preserve all markdown syntax exactly. Do not translate code blocks.\n\n${source}`,

@@ -1,3 +1,3 @@
-import { atom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
-export const translatedTextAtom = atom('')
+export const translatedTextAtom = atomWithStorage('remarkdown:output', '')

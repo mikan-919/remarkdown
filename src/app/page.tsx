@@ -1,5 +1,6 @@
 'use client'
 import { Pane } from '../components/Pane'
+import { BYOKButton } from '../components/BYOKButton'
 import { CopyButton } from '../components/CopyButton'
 import { useTranslate } from '../hooks/useTranslate'
 
@@ -37,7 +38,8 @@ function Gutter({ side }: { side: 'left' | 'right' }) {
         </div>
       </div>
       {side === 'right' && (
-        <div className='absolute bottom-5 left-3'>
+        <div className='absolute bottom-5 left-3 flex flex-col gap-2 items-start'>
+          <BYOKButton />
           <CopyButton />
         </div>
       )}

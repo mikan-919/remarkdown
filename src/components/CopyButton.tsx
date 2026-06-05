@@ -23,7 +23,7 @@ export function CopyButton() {
       className={`
         flex items-center gap-2 px-4 py-2.5 border-2
         font-elms-sans font-black text-sm tracking-wide
-        transition-all duration-200 shadow-sm
+        transition-all duration-200
         disabled:opacity-25 disabled:cursor-not-allowed
         ${
           copied

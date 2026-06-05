@@ -85,7 +85,7 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
       <div
         className={`
           absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 z-50
-          bg-cloud border border-smoke shadow-lg shadow-black/5
+          bg-cloud border border-prism
           overflow-hidden
           transition-all duration-200 origin-top
           ${open ? 'opacity-100 scale-y-100 translate-y-0 pointer-events-auto' : 'opacity-0 scale-y-90 -translate-y-1 pointer-events-none'}
