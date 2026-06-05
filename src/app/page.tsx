@@ -3,6 +3,7 @@ import { Pane } from '../components/Pane'
 import { BYOKButton } from '../components/BYOKButton'
 import { CopyButton } from '../components/CopyButton'
 import { useTranslate } from '../hooks/useTranslate'
+import { ErrorSonar } from '../components/ErrorSonar'
 
 function TranslateEngine() {
   useTranslate()
@@ -55,6 +56,7 @@ export default function Home() {
       <Pane direction='left' />
       <Pane direction='right' />
       <Gutter side='right' />
+      <ErrorSonar />
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { targetLangAtom } from '../lib/atoms/language'
 import { left } from '../lib/atoms/progress'
 import { byokKeyAtom } from '../lib/atoms/byok'
 import { translatedTextAtom } from '../lib/atoms/translate'
+import { translateErrorAtom } from '../lib/atoms/error'
 import { RateLimiter } from '../lib/rateLimiter'
 
 const DEBOUNCE_MS = 2_000
@@ -18,6 +19,7 @@ export function useTranslate() {
   const byokKey = useAtomValue(byokKeyAtom)
   const setTranslated = useSetAtom(translatedTextAtom)
   const setLeft = useSetAtom(left)
+  const setError = useSetAtom(translateErrorAtom)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -39,8 +41,10 @@ export function useTranslate() {
         const { translatedText, detectedLanguage } = await translateAction(source, targetLang, byokKey || undefined)
         setTranslated(translatedText)
         setLeft(detectedLanguage)
-      } catch {
+      } catch (e) {
         setLeft('wait')
+        const msg = e instanceof Error ? e.message : '翻訳に失敗しました'
+        setError(msg)
       }
     }, DEBOUNCE_MS)
 
