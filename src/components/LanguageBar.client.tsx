@@ -17,5 +17,10 @@ export function LanguageBar({ direction }: Props) {
     return <LeftLanguageBar state={leftState} />
   }
 
-  return <RightLanguageBar value={targetLang} onChange={(lang: LanguageCode) => setTargetLang(lang)} />
+  return (
+    <RightLanguageBar
+      value={targetLang}
+      onChange={(lang: LanguageCode) => setTargetLang(lang)}
+    />
+  )
 }

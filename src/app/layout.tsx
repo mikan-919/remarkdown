@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Elms_Sans } from 'next/font/google'
 import './globals.css'
-import { udevGothic, jetbrainsMono } from '@/lib/font'
+import { Analytics } from '@vercel/analytics/next'
+import { jetbrainsMono, udevGothic } from '@/lib/font'
 
 const elmsSans = Elms_Sans({ subsets: ['latin'], display: 'swap', variable: '--elms-sans', adjustFontFallback: false })
 export const metadata: Metadata = {
@@ -19,7 +20,10 @@ export default function RootLayout({
       lang='ja'
       className={`${jetbrainsMono.className} ${elmsSans.className} ${udevGothic.className}  h-full antialiased`}
     >
-      <body className='h-dvh overflow-hidden w-dvw flex flex-col m-0 bg-cloud'>{children}</body>
+      <body className='h-dvh overflow-hidden w-dvw flex flex-col m-0 bg-cloud'>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

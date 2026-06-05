@@ -18,12 +18,20 @@ function Gutter({ side }: { side: 'left' | 'right' }) {
           style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
           className='flex flex-col items-center gap-1 select-none'
         >
-          <span className='text-sm tracking-[0.25em] font-elms-sans font-black text-haze uppercase'>
+          {side === 'right' && (
+            <span className='text-[9px] tracking-widest rotate-180 font-elms-sans text-prism uppercase mt-2'>
+              ※ using Gemini 3.1 Flash lite ※
+            </span>
+          )}
+
+          <span
+            className={`${side === 'right' && 'rotate-180'} text-sm tracking-[0.25em] font-elms-sans font-black text-haze uppercase`}
+          >
             {side === 'left' ? 'src' : 'out'}
           </span>
           {side === 'left' && (
-            <span className='text-[9px] tracking-widest font-elms-sans text-haze/50 uppercase mt-2'>
-              Gemini 3.1 Flash lite
+            <span className='text-[9px] tracking-widest font-elms-sans text-prism uppercase mt-2'>
+              ※ using Gemini 3.1 Flash lite ※
             </span>
           )}
         </div>

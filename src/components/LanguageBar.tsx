@@ -28,13 +28,7 @@ export function LeftLanguageBar({ state }: LeftBarProps) {
   const label = LANGUAGES.find(l => l.code === state)?.label ?? state
   return (
     <h1 className='text-ink flex items-center gap-3'>
-      {state === 'wait' ? (
-        <span className='text-fog'>—</span>
-      ) : state === 'progress' ? (
-        <TranslatingDots />
-      ) : (
-        label
-      )}
+      {state === 'wait' ? <span className='text-fog'>—</span> : state === 'progress' ? <TranslatingDots /> : label}
     </h1>
   )
 }
@@ -60,7 +54,10 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
   }, [])
 
   return (
-    <div ref={ref} className='relative'>
+    <div
+      ref={ref}
+      className='relative'
+    >
       <button
         type='button'
         onClick={() => setOpen(o => !o)}
@@ -75,7 +72,13 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
           className={`transition-transform duration-200 text-fog group-hover:text-prism mt-1 ${open ? 'rotate-180' : ''}`}
           aria-hidden='true'
         >
-          <path d='M1 1.5L6 6.5L11 1.5' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+          <path
+            d='M1 1.5L6 6.5L11 1.5'
+            stroke='currentColor'
+            strokeWidth='1.8'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
         </svg>
       </button>
 
@@ -101,17 +104,26 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
               w-full text-left px-5 py-3 text-sm tracking-wide font-black font-elms-sans
               flex items-center justify-between gap-4
               transition-colors duration-100
-              ${lang.code === value
-                ? 'text-prism bg-tint'
-                : 'text-ink hover:bg-veil hover:text-prism'
-              }
+              ${lang.code === value ? 'text-prism bg-tint' : 'text-ink hover:bg-veil hover:text-prism'}
               ${i !== 0 ? 'border-t border-smoke' : ''}
             `}
           >
             <span>{lang.label}</span>
             {lang.code === value && (
-              <svg width='14' height='10' viewBox='0 0 14 10' fill='none' aria-hidden='true'>
-                <path d='M1 5L5.5 9L13 1' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+              <svg
+                width='14'
+                height='10'
+                viewBox='0 0 14 10'
+                fill='none'
+                aria-hidden='true'
+              >
+                <path
+                  d='M1 5L5.5 9L13 1'
+                  stroke='currentColor'
+                  strokeWidth='1.8'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
               </svg>
             )}
           </button>
