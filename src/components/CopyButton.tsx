@@ -1,11 +1,13 @@
 'use client'
 import { useAtomValue } from 'jotai'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { translatedTextAtom } from '@/lib/atoms/translate'
 
 export function CopyButton() {
   const text = useAtomValue(translatedTextAtom)
   const [copied, setCopied] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
 
   async function handleCopy() {
     if (!text) return
@@ -18,7 +20,7 @@ export function CopyButton() {
     <button
       type='button'
       onClick={handleCopy}
-      disabled={!text}
+      disabled={!mounted || !text}
       title={copied ? 'コピーしました' : 'テキストをコピー'}
       className={`
         flex items-center gap-2 px-4 py-2.5 border-2
