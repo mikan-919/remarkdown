@@ -21,6 +21,11 @@ function Gutter({ side }: { side: 'left' | 'right' }) {
           <span className='text-sm tracking-[0.25em] font-elms-sans font-black text-haze uppercase'>
             {side === 'left' ? 'src' : 'out'}
           </span>
+          {side === 'left' && (
+            <span className='text-[9px] tracking-widest font-elms-sans text-haze/50 uppercase mt-2'>
+              Gemini 3.1 Flash lite
+            </span>
+          )}
         </div>
       </div>
       {side === 'right' && (
