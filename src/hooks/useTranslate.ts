@@ -9,12 +9,27 @@ import { byokKeyAtom } from '../lib/atoms/byok'
 import { translatedTextAtom } from '../lib/atoms/translate'
 import { translateErrorAtom } from '../lib/atoms/error'
 import { sameLanguageAtom } from '../lib/atoms/sameLanguage'
-import { translatedHashAtom } from '../lib/atoms/translatedHash'
 import { djb2 } from '../lib/hash'
 import { RateLimiter } from '../lib/rateLimiter'
 
 const DEBOUNCE_MS = 2_000
+const HASH_KEY = 'remarkdown:translated-hash'
 const rateLimiter = new RateLimiter()
+
+function readStoredHash(): string {
+  try {
+    const raw = localStorage.getItem(HASH_KEY)
+    return raw ? JSON.parse(raw) : ''
+  } catch {
+    return ''
+  }
+}
+
+function writeStoredHash(hash: string) {
+  try {
+    localStorage.setItem(HASH_KEY, JSON.stringify(hash))
+  } catch {}
+}
 
 export function useTranslate() {
   const source = useAtomValue(markdownAtom)
@@ -24,31 +39,36 @@ export function useTranslate() {
   const [leftState, setLeft] = useAtom(left)
   const setError = useSetAtom(translateErrorAtom)
   const setSameLang = useSetAtom(sameLanguageAtom)
-  const [translatedHash, setTranslatedHash] = useAtom(translatedHashAtom)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const leftStateRef = useRef(leftState)
+  leftStateRef.current = leftState
+
+  // True after the first non-empty source has been seen (i.e. past initial hydration)
+  const hydratedRef = useRef(false)
 
   useEffect(() => {
     if (!source.trim()) {
-      setTranslated('')
-      setLeft('wait')
-      setSameLang(false)
-      setTranslatedHash('')
+      if (hydratedRef.current) {
+        setTranslated('')
+        setLeft('wait')
+        setSameLang(false)
+      }
       return
     }
+    hydratedRef.current = true
 
-    // Skip translation if output is already up-to-date for this input+lang
+    // Read hash directly from localStorage to avoid atom hydration race
     const currentHash = djb2(source + targetLang)
-    if (currentHash === translatedHash) {
-      setLeft(prev => prev === 'progress' ? 'wait' : prev)
-      return
-    }
+    if (currentHash === readStoredHash()) return
 
-    // If detected language is already known and matches target, pass through without API call
-    const knownLang = leftState !== 'wait' && leftState !== 'progress' ? leftState : null
+    const knownLang = leftStateRef.current !== 'wait' && leftStateRef.current !== 'progress'
+      ? leftStateRef.current
+      : null
     if (knownLang && knownLang === targetLang) {
       setTranslated(source)
       setSameLang(true)
-      setTranslatedHash(currentHash)
+      writeStoredHash(currentHash)
       return
     }
 
@@ -58,7 +78,6 @@ export function useTranslate() {
 
     timerRef.current = setTimeout(async () => {
       if (!rateLimiter.canRequest()) return
-
       rateLimiter.record()
 
       try {
@@ -71,7 +90,7 @@ export function useTranslate() {
           setSameLang(false)
         }
         setLeft(detectedLanguage)
-        setTranslatedHash(djb2(source + targetLang))
+        writeStoredHash(djb2(source + targetLang))
       } catch (e) {
         setLeft('wait')
         const msg = e instanceof Error ? e.message : '翻訳に失敗しました'
@@ -82,5 +101,5 @@ export function useTranslate() {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current)
     }
-  }, [source, targetLang, byokKey, setTranslated, setLeft, leftState, setSameLang, setError, translatedHash, setTranslatedHash])
+  }, [source, targetLang, byokKey, setTranslated, setLeft, setSameLang, setError])
 }

@@ -1,4 +1,4 @@
-import { atom } from 'jotai'
+import { atomWithStorage } from 'jotai/utils'
 
 export const LANGUAGES = [
   { code: 'ja', label: '日本語' },
@@ -14,4 +14,4 @@ export const LANGUAGES = [
 export type LanguageCode = (typeof LANGUAGES)[number]['code']
 
 /** targetLang is a LanguageCode or a custom BCP-47 string */
-export const targetLangAtom = atom<string>('en')
+export const targetLangAtom = atomWithStorage<string>('remarkdown:target-lang', 'en')

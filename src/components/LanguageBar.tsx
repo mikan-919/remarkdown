@@ -9,7 +9,7 @@ type LeftBarProps = {
 
 function TranslatingDots() {
   return (
-    <span className='inline-flex items-end gap-[5px] h-[0.85em] pb-[0.05em]'>
+    <span className='inline-flex items-end gap-[5px] h-15'>
       {[0, 1, 2].map(i => (
         <span
           key={i}
@@ -116,8 +116,20 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
           >
             <span>{lang.label}</span>
             {lang.code === value && (
-              <svg width='14' height='10' viewBox='0 0 14 10' fill='none' aria-hidden='true'>
-                <path d='M1 5L5.5 9L13 1' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+              <svg
+                width='14'
+                height='10'
+                viewBox='0 0 14 10'
+                fill='none'
+                aria-hidden='true'
+              >
+                <path
+                  d='M1 5L5.5 9L13 1'
+                  stroke='currentColor'
+                  strokeWidth='1.8'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                />
               </svg>
             )}
           </button>
@@ -141,8 +153,20 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
             >
               <span>Custom…</span>
               {isCustom && (
-                <svg width='14' height='10' viewBox='0 0 14 10' fill='none' aria-hidden='true'>
-                  <path d='M1 5L5.5 9L13 1' stroke='currentColor' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+                <svg
+                  width='14'
+                  height='10'
+                  viewBox='0 0 14 10'
+                  fill='none'
+                  aria-hidden='true'
+                >
+                  <path
+                    d='M1 5L5.5 9L13 1'
+                    stroke='currentColor'
+                    strokeWidth='1.8'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
                 </svg>
               )}
             </button>
