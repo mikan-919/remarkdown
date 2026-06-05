@@ -1,6 +1,6 @@
 'use client'
 import { useAtomValue, useSetAtom } from 'jotai'
-import { targetLangAtom, type LanguageCode } from '@/lib/atoms/language'
+import { targetLangAtom } from '@/lib/atoms/language'
 import { left } from '@/lib/atoms/progress'
 import { LeftLanguageBar, RightLanguageBar } from './LanguageBar'
 
@@ -20,7 +20,7 @@ export function LanguageBar({ direction }: Props) {
   return (
     <RightLanguageBar
       value={targetLang}
-      onChange={(lang: LanguageCode) => setTargetLang(lang)}
+      onChange={(lang: string) => setTargetLang(lang)}
     />
   )
 }

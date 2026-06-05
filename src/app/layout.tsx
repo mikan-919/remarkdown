@@ -4,7 +4,12 @@ import './globals.css'
 import { Analytics } from '@vercel/analytics/next'
 import { jetbrainsMono, udevGothic } from '@/lib/font'
 
-const elmsSans = Elms_Sans({ subsets: ['latin'], display: 'swap', variable: '--elms-sans', adjustFontFallback: false })
+const elmsSans = Elms_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-elms-sans',
+  adjustFontFallback: false,
+})
 export const metadata: Metadata = {
   title: 'Remarkdown',
   description: 'Markdownを見ながらまとめ、翻訳する。',

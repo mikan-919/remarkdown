@@ -13,4 +13,5 @@ export const LANGUAGES = [
 
 export type LanguageCode = (typeof LANGUAGES)[number]['code']
 
-export const targetLangAtom = atom<LanguageCode>('en')
+/** targetLang is a LanguageCode or a custom BCP-47 string */
+export const targetLangAtom = atom<string>('en')
