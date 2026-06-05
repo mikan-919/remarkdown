@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { Elms_Sans } from 'next/font/google'
 import './globals.css'
-import { MonacoTheme } from '@/components/providers/monacoThemeDefine'
 import { udevGothic, jetbrainsMono } from '@/lib/font'
 
 const elmsSans = Elms_Sans({ subsets: ['latin'], display: 'swap', variable: '--elms-sans', adjustFontFallback: false })
