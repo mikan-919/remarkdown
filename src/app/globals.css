@@ -124,13 +124,59 @@
     color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
   );
 }
+
+@property --stripe-gap {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 12px;
+}
+
+@keyframes stripe-reveal {
+  0% {
+    --stripe-gap: 12px;
+  }
+  20% {
+    --stripe-gap: 0px;
+  } /* 塗り潰し完了 */
+  70% {
+    --stripe-gap: 0px;
+  } /* 保持 */
+  100% {
+    --stripe-gap: 12px;
+  } /* 元に戻す */
+}
+
+@keyframes translation-visibility {
+  0%,
+  19% {
+    opacity: 0;
+  }
+  25%,
+  65% {
+    opacity: 1;
+  }
+  75%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Translationテキスト */
+.translation {
+  opacity: 0;
+  animation: translation-visibility 600ms ease-in-out forwards;
+}
 /* dense variant used for the translation-in-progress overlay */
 .gutter-pattern-dense {
   background-image: repeating-linear-gradient(
     -45deg,
     transparent,
-    transparent 0px,
-    color-mix(in srgb, var(--color-depth) 75%, transparent) 0px,
+    transparent var(--stripe-gap),
+    color-mix(in srgb, var(--color-depth) 75%, transparent) var(--stripe-gap),
     color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
   );
+  transition: --stripe-gap 0.3s ease;
+}
+.gutter-pattern-dense.filled {
+  --stripe-gap: 1px;
 }

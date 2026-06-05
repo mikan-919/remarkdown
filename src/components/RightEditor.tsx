@@ -18,9 +18,9 @@ export function RightEditor() {
 
       {/* translation-in-progress overlay */}
       <div
-        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${isProgress ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        className={`absolute z-10 inset-0 flex items-center justify-center transition-all pointer-events-none duration-600 ${isProgress ? 'opacity-100 ' : 'opacity-0'}`}
       >
-        <div className='absolute inset-0 gutter-pattern-dense opacity-60' />
+        <div className={`absolute inset-0 gutter-pattern-dense opacity-60 ${isProgress && 'filled'}`} />
         <span className='relative font-elms-sans font-black text-[11px] tracking-[0.3em] uppercase text-depth select-none'>
           Translation
         </span>
