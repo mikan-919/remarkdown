@@ -124,32 +124,13 @@
     color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
   );
 }
-/*
-background-image: repeating-linear-gradient(
-  -45deg,
-  transparent,
-  transparent 12px,
-  color-mix(in srgb, var(--color-depth) 75%, transparent) 12px,
-  color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
-);
-が
-background-image: repeating-linear-gradient(
-  -45deg,
-  transparent,
-  transparent 0px,
-  color-mix(in srgb, var(--color-depth) 75%, transparent) 0px,
-  color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
-);
-こうなって、
-Translationを表示して、
-終わったらTranslationを消して
-background-image: repeating-linear-gradient(
-  -45deg,
-  transparent,
-  transparent 12px,
-  color-mix(in srgb, var(--color-depth) 75%, transparent) 12px,
-  color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
-);
-に戻す。
-
-*/
+/* dense variant used for the translation-in-progress overlay */
+.gutter-pattern-dense {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 0px,
+    color-mix(in srgb, var(--color-depth) 75%, transparent) 0px,
+    color-mix(in srgb, var(--color-depth) 75%, transparent) 13px
+  );
+}
