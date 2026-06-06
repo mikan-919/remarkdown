@@ -40,7 +40,7 @@ function Gutter({ side }: { side: 'left' | 'right' }) {
         </div>
       </div>
       {side === 'right' && (
-        <div className='absolute bottom-5 left-3 flex flex-col gap-2 items-start'>
+        <div className='absolute bottom-6 left-3 flex flex-col gap-2 items-start'>
           <BYOKButton />
           <CopyButton />
         </div>

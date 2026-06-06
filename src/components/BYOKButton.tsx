@@ -34,8 +34,8 @@ export function BYOKButton() {
           type='button'
           title={hasKey ? 'カスタムAPIキーを使用中' : '自分のAPIキーを使う (BYOK)'}
           className={`
-            flex items-center gap-1.5 px-3 py-2 border-2
-            font-elms-sans font-black text-[11px] tracking-widest uppercase
+            flex items-center gap-2 px-4 py-2.5 border-2
+            font-elms-sans font-black text-sm tracking-wide
             transition-all duration-200
             ${
               hasKey
