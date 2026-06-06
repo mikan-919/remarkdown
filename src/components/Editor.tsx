@@ -14,14 +14,13 @@ function useMonacoTheme() {
   const [theme, setTheme] = useState<'elms-cloud' | 'elms-cloud-dark'>(() =>
     typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches
       ? 'elms-cloud-dark'
-      : 'elms-cloud'
+      : 'elms-cloud',
   )
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-color-scheme: dark)')
     setTheme(mq.matches ? 'elms-cloud-dark' : 'elms-cloud')
-    const handler = (e: MediaQueryListEvent) =>
-      setTheme(e.matches ? 'elms-cloud-dark' : 'elms-cloud')
+    const handler = (e: MediaQueryListEvent) => setTheme(e.matches ? 'elms-cloud-dark' : 'elms-cloud')
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
   }, [])
