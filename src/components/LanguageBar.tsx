@@ -66,7 +66,10 @@ export function RightLanguageBar({ value, onChange }: RightBarProps) {
       <button
         type='button'
         onClick={() => setOpen(o => !o)}
-        className='group text-ink font-black font-elms-sans tracking-tighter text-6xl leading-none cursor-pointer select-none transition-all duration-200 hover:text-prism flex items-center gap-3'
+        aria-haspopup='listbox'
+        aria-expanded={open}
+        aria-label='翻訳先の言語'
+        className='group text-ink font-black font-elms-sans tracking-tighter text-4xl xl:text-6xl leading-none cursor-pointer select-none transition-all duration-200 hover:text-prism flex items-center gap-3'
       >
         {label}
         <svg

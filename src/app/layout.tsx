@@ -7,7 +7,7 @@ import { jetbrainsMono, udevGothic } from '@/lib/font'
 const elmsSans = Elms_Sans({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-elms-sans',
+  variable: '--elms-sans',
   adjustFontFallback: false,
 })
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang='ja'
-      className={`${jetbrainsMono.className} ${elmsSans.className} ${udevGothic.className}  h-full antialiased`}
+      className={`${jetbrainsMono.variable} ${elmsSans.variable} ${udevGothic.variable} h-full antialiased`}
     >
       <body className='h-dvh overflow-hidden w-dvw flex flex-col m-0 bg-cloud'>
         {children}

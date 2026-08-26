@@ -45,14 +45,14 @@ export function defineElmsCloudTheme(monaco: typeof Monaco) {
       'editor.foreground': '#f7f7f7', // ink → cloud
       'editorLineNumber.foreground': '#444444', // fog → #fff - #bbbbbb
       'editorLineNumber.activeForeground': '#e2e2e2', // ash → smoke
-      'editor.selectionBackground': '#bec9ea', // haze → haze (そのまま)
-      'editor.inactiveSelectionBackground': '#110f05', // tint → #fff - #eef0fa
+      'editor.selectionBackground': '#3a4770', // haze → 暗いhaze
+      'editor.inactiveSelectionBackground': '#151a2b', // tint → 暗いtint
       'editorCursor.foreground': '#5570c5', // depth → prism
       'editor.lineHighlightBackground': '#090909', // veil → #fff - #f6f6f6
       'editorWhitespace.foreground': '#252525', // smoke → ash
       'editorIndentGuide.background': '#252525',
       'editorIndentGuide.activeBackground': '#444444', // fog → #fff - #bbbbbb
-      'editorBracketMatch.background': '#110f05', // tint → #fff - #eef0fa
+      'editorBracketMatch.background': '#151a2b', // tint → 暗いtint
       'editorBracketMatch.border': '#2e4296', // prism → depth
     },
   })

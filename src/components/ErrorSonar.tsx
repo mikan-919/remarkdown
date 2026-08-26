@@ -30,7 +30,7 @@ export function ErrorSonar() {
         <p className='font-elms-sans font-black text-[10px] tracking-widest uppercase text-prism'>
           Translation Error
         </p>
-        <p className='font-mono text-[10px] text-dusk mt-0.5 break-all'>{error}</p>
+        <p className='font-mono text-[10px] text-dusk mt-0.5 break-words line-clamp-3'>{error}</p>
       </div>
     </div>
   )

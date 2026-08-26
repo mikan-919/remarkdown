@@ -37,6 +37,10 @@ export function Editor({ options, beforeMount, theme: _theme, ...props }: Editor
       theme={theme}
       options={{
         scrollBeyondLastLine: false,
+        wordWrap: 'on',
+        minimap: { enabled: false },
+        overviewRulerLanes: 0,
+        padding: { top: 4, bottom: 24 },
         fontSize: 16,
         fontFamily: `${udevGothic.style.fontFamily}, ${jetbrainsMono.style.fontFamily}`,
         ...options,

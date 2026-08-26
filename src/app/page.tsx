@@ -1,7 +1,5 @@
 'use client'
 import { Pane } from '../components/Pane'
-import { BYOKButton } from '../components/BYOKButton'
-import { CopyButton } from '../components/CopyButton'
 import { useTranslate } from '../hooks/useTranslate'
 import { ErrorSonar } from '../components/ErrorSonar'
 import { SameLanguageBadge } from '../components/SameLanguageBadge'
@@ -39,19 +37,13 @@ function Gutter({ side }: { side: 'left' | 'right' }) {
           )}
         </div>
       </div>
-      {side === 'right' && (
-        <div className='absolute bottom-6 left-3 flex flex-col gap-2 items-start'>
-          <BYOKButton />
-          <CopyButton />
-        </div>
-      )}
     </div>
   )
 }
 
 export default function Home() {
   return (
-    <div className='grid-cols-6 grid h-full'>
+    <div className='grid grid-cols-[4rem_1fr_1fr_4rem] h-full'>
       <TranslateEngine />
       <Gutter side='left' />
       <Pane direction='left' />

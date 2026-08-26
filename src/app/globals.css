@@ -41,14 +41,26 @@
     --color-white: #000000;
 
     --color-prism: #2e4296;
+    --color-haze: #3a4770;
     --color-depth: #5570c5;
 
     --color-dusk: #6f6f6f;
     --color-fog: #444444;
     --color-veil: #090909;
     --color-ghost: #010101;
-    --color-tint: #110f05;
+    --color-tint: #151a2b;
   }
+}
+
+/* 表示用はElms Sans、等幅はUDEV Gothic(CJK可)→JetBrains Mono */
+body {
+  font-family: var(--elms-sans), var(--font-udev), ui-sans-serif, system-ui, sans-serif;
+}
+code,
+pre,
+kbd,
+samp {
+  font-family: var(--font-udev), var(--jetbrains-mono), ui-monospace, monospace;
 }
 
 @keyframes dot-bounce {

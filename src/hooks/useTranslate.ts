@@ -9,6 +9,7 @@ import { byokKeyAtom } from '../lib/atoms/byok'
 import { translatedTextAtom } from '../lib/atoms/translate'
 import { translateErrorAtom } from '../lib/atoms/error'
 import { sameLanguageAtom } from '../lib/atoms/sameLanguage'
+import { readableError } from '../lib/errorMessage'
 import { djb2 } from '../lib/hash'
 import { RateLimiter } from '../lib/rateLimiter'
 
@@ -93,7 +94,7 @@ export function useTranslate() {
         writeStoredHash(djb2(source + targetLang))
       } catch (e) {
         setLeft('wait')
-        const msg = e instanceof Error ? e.message : '翻訳に失敗しました'
+        const msg = e instanceof Error ? readableError(e.message) : '翻訳に失敗しました'
         setError(msg)
       }
     }, DEBOUNCE_MS)
