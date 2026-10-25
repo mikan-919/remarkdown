@@ -1,6 +1,8 @@
-# remarkdown
+<h1 align="center">remarkdown</h1>
 
-A side-by-side Markdown translation editor. Write or paste Markdown on the left; the right pane shows the translated output in real time, powered by Gemini.
+<p align="center">A side-by-side Markdown translation editor powered by Gemini.</p>
+
+<p align="center"><a href="#features">Features</a> · <a href="#quick-start">Quick start</a> · <a href="#environment-variables">Environment variables</a> · <a href="#scripts">Scripts</a></p>
 
 ## Features
 
